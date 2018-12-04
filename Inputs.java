@@ -11,18 +11,23 @@ import static java.util.stream.Collectors.toList;
  *
  * @author Nerijus
  */
-public final class Inputs {
-    public static String read(String fileName) {
-        try (InputStream input = Day1_1.class.getResourceAsStream("inputs/" + fileName)) {
+final class Inputs {
+    static String read(String fileName) {
+        try (InputStream input = Inputs.class.getResourceAsStream("inputs/" + fileName)) {
             return new Scanner(input, "UTF-8").useDelimiter("\\A").next();
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
     }
 
-    public static List<Integer> readInts(String fileName) {
+    static List<Integer> readInts(String fileName) {
         return Arrays.stream(read(fileName).split("\r\n"))
                 .map(Integer::valueOf)
+                .collect(toList());
+    }
+
+    static List<String> readStrings(String fileName) {
+        return Arrays.stream(read(fileName).split("\r\n"))
                 .collect(toList());
     }
 }
