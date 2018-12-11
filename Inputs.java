@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
  * @author Nerijus
  */
 final class Inputs {
-    static String read(String fileName) {
+    static String readString(String fileName) {
         try (InputStream input = Inputs.class.getResourceAsStream("inputs/" + fileName)) {
             return new Scanner(input, "UTF-8").useDelimiter("\\A").next();
         } catch (IOException e) {
@@ -21,13 +21,13 @@ final class Inputs {
     }
 
     static List<Integer> readInts(String fileName) {
-        return Arrays.stream(read(fileName).split("\r\n"))
+        return Arrays.stream(readString(fileName).split("\r\n"))
                 .map(Integer::valueOf)
                 .collect(toList());
     }
 
     static List<String> readStrings(String fileName) {
-        return Arrays.stream(read(fileName).split("\r\n"))
+        return Arrays.stream(readString(fileName).split("\r\n"))
                 .collect(toList());
     }
 }
