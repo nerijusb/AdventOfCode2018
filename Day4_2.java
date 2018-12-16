@@ -35,7 +35,6 @@ public class Day4_2 extends Day4_1 {
         Integer guardId = toFind.getKey();
         System.out.println("Guard id: #" + guardId);
 
-
         Integer mostSleptMinute = toFind.getValue().getKey();
         System.out.println("Most slept minute: " + mostSleptMinute);
 

@@ -26,7 +26,8 @@ public class Day5_2 extends Day5_1 {
     }
 
     private String removeUnit(String polymer, char unit) {
-        return polymer.replace(Character.toString(unit), "")
+        return polymer
+                .replace(Character.toString(unit), "")
                 .replace(Character.toString(unit).toUpperCase(), "");
     }
 }
