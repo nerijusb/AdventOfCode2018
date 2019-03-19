@@ -26,6 +26,12 @@ final class Inputs {
                 .collect(toList());
     }
 
+    static List<Integer> readIntsLine(String fileName) {
+        return Arrays.stream(readString(fileName).split(" "))
+                .map(Integer::valueOf)
+                .collect(toList());
+    }
+
     static List<String> readStrings(String fileName) {
         return Arrays.stream(readString(fileName).split("\r\n"))
                 .collect(toList());
