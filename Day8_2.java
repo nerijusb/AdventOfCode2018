@@ -1,5 +1,5 @@
 /**
- * Part one of
+ * Part two of
  * https://adventofcode.com/2018/day/8
  *
  * @author Nerijus
