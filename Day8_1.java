@@ -27,7 +27,7 @@ public class Day8_1 {
     }
 
     private Node readNode(LinkedList<Integer> input) {
-        Node node = new Node();
+        Node node = createNode();
         node.childCount = input.pop();
         node.metadataCount = input.pop();
         for (int i = 0; i < node.childCount; i++) {
@@ -39,9 +39,14 @@ public class Day8_1 {
         return node;
     }
 
+    protected Node createNode() {
+        return new Node();
+    }
+
     static class Node {
         int childCount;
         int metadataCount;
+
         List<Integer> metadata = new ArrayList<>();
         List<Node> children = new ArrayList<>();
 
@@ -55,25 +60,6 @@ public class Day8_1 {
         void collectMetadata(List<Integer> collectTo) {
             collectTo.addAll(metadata);
             children.forEach(c -> c.collectMetadata(collectTo));
-        }
-
-        // for 2nd puzzle part
-        Integer getNodeValue() {
-            if (children.isEmpty()) {
-                return metadata.stream().mapToInt(i -> i).sum();
-            } else {
-                return metadata
-                        .stream()
-                        .mapToInt(i -> {
-                            if (i == 0) {
-                                return 0;
-                            }
-                            if (i > childCount) {
-                                return 0;
-                            }
-                            return children.get(i - 1).getNodeValue();
-                        }).sum();
-            }
         }
     }
 }
