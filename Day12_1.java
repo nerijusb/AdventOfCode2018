@@ -9,29 +9,29 @@ import java.util.List;
  */
 public class Day12_1 {
 
-    private static final int GENERATIONS = 30;
-    private static final String EXTRA_ROOM = ".............................................";
+    private static final int GENERATIONS = 20;
+    private static final String EXTRA_START = ".....";
 
     public static void main(String[] args) {
-        System.out.println("Sum of numbers of all pots with plant: " + new Day12_1().getSumOfPlantPotNumbers());
+        System.out.println("Sum of numbers of all pots with plant: " + new Day12_1().getSumOfPlantPotNumbers(GENERATIONS));
     }
 
-    private int getSumOfPlantPotNumbers() {
+    private int getSumOfPlantPotNumbers(int generations) {
         List<String> input = Inputs.readStrings("Day12");
 
         String state = readInitialState(input.get(0));
         List<Rule> rules = readRules(input);
 
-        System.out.println(String.format("%2d: sum: %4d ", 0, sumPotNumbersWithPlants(state)) + state);
-        for (int i = 1; i <= GENERATIONS; i++) {
+        System.out.println(String.format("%3d: sum: %5d ", 0, sumPotNumbersWithPlants(state)) + state);
+        for (int i = 1; i <= generations; i++) {
             StringBuilder newState = new StringBuilder("..");
             char[] pots = state.toCharArray();
             for (int j = 2; j < pots.length - 2; j++) {
                 newState.append(
                         applyRule("" + pots[j - 2] + pots[j - 1] + pots[j] + pots[j + 1] + pots[j + 2], rules));
             }
-            state = newState.toString() + "..";
-            System.out.println(String.format("%2d: sum: %4d ", i, sumPotNumbersWithPlants(state)) + state);
+            state = newState.toString() + "...";
+            System.out.println(String.format("%3d: sum: %5d ", i, sumPotNumbersWithPlants(state)) + state);
         }
 
         return sumPotNumbersWithPlants(state);
@@ -47,7 +47,7 @@ public class Day12_1 {
     }
 
     private int sumPotNumbersWithPlants(String state) {
-        int index = EXTRA_ROOM.length() * -1;
+        int index = EXTRA_START.length() * -1;
         int sum = 0;
         char[] pots = state.toCharArray();
         for (int i = 0; i < pots.length; i++) {
@@ -60,9 +60,7 @@ public class Day12_1 {
     }
 
     private String readInitialState(String line) {
-        return EXTRA_ROOM +
-                line.replace("initial state: ", "")
-                + EXTRA_ROOM;
+        return EXTRA_START + line.replace("initial state: ", "") + "...";
     }
 
     private List<Rule> readRules(List<String> input) {
@@ -78,7 +76,7 @@ public class Day12_1 {
         private String rule;
         private String outcome;
 
-        public Rule(String source) {
+        Rule(String source) {
             String[] parts = source.split(" => ");
             this.rule = parts[0];
             this.outcome = parts[1];
