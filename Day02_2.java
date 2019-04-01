@@ -7,10 +7,10 @@ import java.util.List;
  *
  * @author Nerijus
  */
-public class Day2_2 {
+public class Day02_2 {
 
     public static void main(String[] args) {
-        System.out.println("Common letters: " + findCommonLetters(Inputs.readStrings("Day2")));
+        System.out.println("Common letters: " + findCommonLetters(Inputs.readStrings("Day02")));
     }
 
     private static String findCommonLetters(List<String> boxIds) {

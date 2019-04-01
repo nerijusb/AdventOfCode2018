@@ -6,10 +6,10 @@ import java.util.Arrays;
  *
  * @author Nerijus
  */
-public class Day1_1 {
+public class Day01_1 {
 
     public static void main(String[] args) {
-        System.out.println("Calculated frequency: " + calculateFrequency(Inputs.readString("Day1")));
+        System.out.println("Calculated frequency: " + calculateFrequency(Inputs.readString("Day01")));
     }
 
     private static int calculateFrequency(String input) {

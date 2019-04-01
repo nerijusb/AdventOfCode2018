@@ -1,11 +1,4 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.*;
 
 /**
  * Part one of
@@ -13,16 +6,16 @@ import static java.util.stream.Collectors.*;
  *
  * @author Nerijus
  */
-public class Day5_1 {
+public class Day05_1 {
 
     private static final Set<String> REACTIVE_PAIRS = generateReactivePairs();
 
     public static void main(String[] args) {
-        System.out.println("Remaining polymer size: " + new Day5_1().getRemainingPolymerSize());
+        System.out.println("Remaining polymer size: " + new Day05_1().getRemainingPolymerSize());
     }
 
     private int getRemainingPolymerSize() {
-        String polymer = Inputs.readString("Day5");
+        String polymer = Inputs.readString("Day05");
         return reactPolymer(polymer).length();
     }
 

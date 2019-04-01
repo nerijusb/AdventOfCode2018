@@ -7,11 +7,11 @@ import java.util.List;
  *
  * @author Nerijus
  */
-public class Day6_2 extends Day6_1 {
+public class Day06_2 extends Day06_1 {
 
     public static void main(String[] args) {
         System.out.println("Size of the region containing all locations which have a total distance to all destinations of less than 10000: "
-                + new Day6_2().getAreaSizeWithDistanceToAllDestinationsLessThan(10000));
+                + new Day06_2().getAreaSizeWithDistanceToAllDestinationsLessThan(10000));
     }
 
     private long getAreaSizeWithDistanceToAllDestinationsLessThan(int target) {

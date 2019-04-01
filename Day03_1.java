@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
  *
  * @author Nerijus
  */
-public class Day3_1 {
+public class Day03_1 {
 
     private static final Pattern CLAIM_PATTERN = Pattern.compile("#(\\d+) @ (\\d+),(\\d+): (\\d+)x(\\d+)");
 
@@ -19,11 +19,11 @@ public class Day3_1 {
     static final String OVERLAP = "X";
 
     public static void main(String[] args) {
-        System.out.println("Overlapping area: " + new Day3_1().findOverlappingArea());
+        System.out.println("Overlapping area: " + new Day03_1().findOverlappingArea());
     }
 
     List<Claim> getClaims() {
-        return Inputs.readStrings("Day3")
+        return Inputs.readStrings("Day03")
                 .stream()
                 .map(Claim::new)
                 .collect(toList());

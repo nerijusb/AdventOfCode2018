@@ -11,12 +11,12 @@ import static java.util.stream.Collectors.toList;
  *
  * @author Nerijus
  */
-public class Day7_1 {
+public class Day07_1 {
 
     private static final Pattern INSTRUCTION_PATTERN = Pattern.compile("Step (\\w) must be finished before step (\\w) can begin\\.");
 
     public static void main(String[] args) {
-        System.out.println("Step order: " + new Day7_1().getStepOrder());
+        System.out.println("Step order: " + new Day07_1().getStepOrder());
     }
 
     private String getStepOrder() {
@@ -56,7 +56,7 @@ public class Day7_1 {
 
 
     private List<StepInstruction> getInstructions() {
-        return Inputs.readStrings("Day7")
+        return Inputs.readStrings("Day07")
                 .stream()
                 .map(StepInstruction::new)
                 .collect(toList());

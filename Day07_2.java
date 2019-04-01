@@ -8,12 +8,12 @@ import java.util.Map;
  *
  * @author Nerijus
  */
-public class Day7_2 extends Day7_1 {
+public class Day07_2 extends Day07_1 {
 
     private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static void main(String[] args) {
-        System.out.println("Assembly time in seconds: " + new Day7_2().getAssemblyTime());
+        System.out.println("Assembly time in seconds: " + new Day07_2().getAssemblyTime());
     }
 
     private int getAssemblyTime() {

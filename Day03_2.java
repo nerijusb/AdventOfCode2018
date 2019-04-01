@@ -6,10 +6,10 @@ import java.util.List;
  *
  * @author Nerijus
  */
-public class Day3_2 extends Day3_1 {
+public class Day03_2 extends Day03_1 {
 
     public static void main(String[] args) {
-        System.out.println("Doesn't overlap: #" + new Day3_2().findNonOverlappingClaimId());
+        System.out.println("Doesn't overlap: #" + new Day03_2().findNonOverlappingClaimId());
     }
 
     private String findNonOverlappingClaimId() {

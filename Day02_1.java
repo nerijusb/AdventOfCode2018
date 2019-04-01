@@ -6,10 +6,10 @@ import java.util.*;
  *
  * @author Nerijus
  */
-public class Day2_1 {
+public class Day02_1 {
 
     public static void main(String[] args) {
-        System.out.println("Checksum: " + calculateChecksum(Inputs.readStrings("Day2")));
+        System.out.println("Checksum: " + calculateChecksum(Inputs.readStrings("Day02")));
     }
 
     private static int calculateChecksum(List<String> boxIds) {

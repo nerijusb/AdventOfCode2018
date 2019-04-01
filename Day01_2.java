@@ -9,10 +9,10 @@ import java.util.Set;
  *
  * @author Nerijus
  */
-public class Day1_2 {
+public class Day01_2 {
 
     public static void main(String[] args) {
-        System.out.println("First reached twice: " + findReachedTwice(Inputs.readInts("Day1")));
+        System.out.println("First reached twice: " + findReachedTwice(Inputs.readInts("Day01")));
     }
 
     private static int findReachedTwice(List<Integer> input) {

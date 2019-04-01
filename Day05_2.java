@@ -4,14 +4,14 @@
  *
  * @author Nerijus
  */
-public class Day5_2 extends Day5_1 {
+public class Day05_2 extends Day05_1 {
 
     public static void main(String[] args) {
-        System.out.println("Shortest possible reacted polymer size: " + new Day5_2().getShortestPossiblePolymerSize());
+        System.out.println("Shortest possible reacted polymer size: " + new Day05_2().getShortestPossiblePolymerSize());
     }
 
     private int getShortestPossiblePolymerSize() {
-        String initialPolymer = Inputs.readString("Day5");
+        String initialPolymer = Inputs.readString("Day05");
         int shortestLength = initialPolymer.length();
 
         for (char i = 'a'; i <= 'z'; i++) {

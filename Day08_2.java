@@ -4,10 +4,10 @@
  *
  * @author Nerijus
  */
-public class Day8_2 extends Day8_1 {
+public class Day08_2 extends Day08_1 {
 
     public static void main(String[] args) {
-        System.out.println("Value of root node: " + new Day8_2().getValueOfRootNode());
+        System.out.println("Value of root node: " + new Day08_2().getValueOfRootNode());
     }
 
     private Integer getValueOfRootNode() {

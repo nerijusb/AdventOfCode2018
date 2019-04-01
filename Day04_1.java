@@ -13,10 +13,10 @@ import static java.util.stream.Collectors.*;
  *
  * @author Nerijus
  */
-public class Day4_1 {
+public class Day04_1 {
 
     public static void main(String[] args) {
-        System.out.println("Guard result (id x minute): " + new Day4_1().getGuardResult());
+        System.out.println("Guard result (id x minute): " + new Day04_1().getGuardResult());
     }
 
     private int getGuardResult() {
@@ -84,7 +84,7 @@ public class Day4_1 {
     }
 
     private List<Record> getRecords() {
-        return Inputs.readStrings("Day4")
+        return Inputs.readStrings("Day04")
                 .stream()
                 .map(Record::new)
                 .collect(toList());

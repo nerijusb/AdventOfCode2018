@@ -10,14 +10,14 @@ import static java.util.stream.Collectors.*;
  *
  * @author Nerijus
  */
-public class Day4_2 extends Day4_1 {
+public class Day04_2 extends Day04_1 {
 
     public static void main(String[] args) {
-        System.out.println("Guard result (id x minute): " + new Day4_2().getGuardResult());
+        System.out.println("Guard result (id x minute): " + new Day04_2().getGuardResult());
     }
 
     private int getGuardResult() {
-        List<Day4_1.SleepyTime> naps = getAllNaps();
+        List<Day04_1.SleepyTime> naps = getAllNaps();
 
         Map<Integer, Map.Entry<Integer, Integer>> mostMinuteByGuard = naps.stream()
                 .collect(groupingBy(SleepyTime::getGuardId, toList()))

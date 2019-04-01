@@ -4,10 +4,10 @@
  *
  * @author Nerijus
  */
-public class Day9_2 extends Day9_1 {
+public class Day09_2 extends Day09_1 {
 
     public static void main(String[] args) {
         System.out.println("Winning Elf's score: "
-                + new Day9_2().getHighScore(NUM_OF_PLAYERS, LAST_MARBLE_WORTH * 100));
+                + new Day09_2().getHighScore(NUM_OF_PLAYERS, LAST_MARBLE_WORTH * 100));
     }
 }

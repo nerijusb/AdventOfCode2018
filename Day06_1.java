@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
  *
  * @author Nerijus
  */
-public class Day6_1 {
+public class Day06_1 {
 
     public static void main(String[] args) {
-        System.out.println("Largest area size: " + new Day6_1().getLargestAreaSize());
+        System.out.println("Largest area size: " + new Day06_1().getLargestAreaSize());
     }
 
     private int getLargestAreaSize() {
@@ -112,7 +112,7 @@ public class Day6_1 {
             }
         };
 
-        return Inputs.readStrings("Day6")
+        return Inputs.readStrings("Day06")
                 .stream()
                 .map(source -> new DestinationPoint(idGenerator, source))
                 .collect(Collectors.toList());

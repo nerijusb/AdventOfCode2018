@@ -8,14 +8,14 @@ import java.util.List;
  *
  * @author Nerijus
  */
-public class Day8_1 {
+public class Day08_1 {
 
     public static void main(String[] args) {
-        System.out.println("Sum of all metadata entries: " + new Day8_1().getSumOfMetadataEntries());
+        System.out.println("Sum of all metadata entries: " + new Day08_1().getSumOfMetadataEntries());
     }
 
     Node readTree() {
-        return readNode(new LinkedList<>(Inputs.readIntsLine("Day8")));
+        return readNode(new LinkedList<>(Inputs.readIntsLine("Day08")));
     }
 
     private Integer getSumOfMetadataEntries() {

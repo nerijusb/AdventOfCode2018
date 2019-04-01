@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  *
  * @author Nerijus
  */
-public class Day9_1 {
+public class Day09_1 {
 
     static final int NUM_OF_PLAYERS = 413;
     static final int LAST_MARBLE_WORTH = 71082;
@@ -19,7 +19,7 @@ public class Day9_1 {
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.start();
         System.out.println("Winning Elf's score: "
-                + new Day9_1().getHighScore(NUM_OF_PLAYERS, LAST_MARBLE_WORTH));
+                + new Day09_1().getHighScore(NUM_OF_PLAYERS, LAST_MARBLE_WORTH));
         System.out.println("Calculated in: " + stopwatch.stop());
     }
 
