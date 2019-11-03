@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Part one of
@@ -18,19 +20,33 @@ public class Day13_1 {
     private String findCrashLocation() {
         RailNetwork railNetwork = readRailNetwork();
         System.out.println("Initial network:");
-        railNetwork.print();
+        //railNetwork.print();
 
+        CartCrashCallback cartCrashCallback = (currentNode, nextNode, network) -> {
+            throw new CartCrashException(nextNode);
+        };
         try {
             int tick = 0;
             while (true) {
                 System.out.println("Tick: " + ++tick);
-                railNetwork.tick();
-                railNetwork.print();
+                railNetwork.tick(cartCrashCallback);
+                //railNetwork.print();
             }
         } catch (CartCrashException e) {
             RailNode crashLocation = e.location;
             return crashLocation.y + "," + crashLocation.x;
         }
+    }
+
+    interface CartCrashCallback {
+        /**
+         * Invoked when carts crash
+         *
+         * @param currentNode current node
+         * @param nextNode next node
+         * @param railNetwork rail network
+         */
+        void onCrash(RailNode currentNode, RailNode nextNode, RailNetwork railNetwork);
     }
 
     /**
@@ -40,22 +56,15 @@ public class Day13_1 {
      *
      * @return rail network as array of rail nodes
      */
-    private RailNetwork readRailNetwork() {
+    RailNetwork readRailNetwork() {
         RailNetwork railNetwork = readInitialNetwork();
-
-        while (!railNetwork.isComplete()) {
-            analyze(railNetwork);
-        }
-
-        return railNetwork;
-    }
-
-    private void analyze(RailNetwork railNetwork) {
         for (RailNode[] row : railNetwork.get()) {
             for (RailNode node : row) {
                 analyzeNode(node, railNetwork);
             }
         }
+
+        return railNetwork;
     }
 
     private RailNetwork readInitialNetwork() {
@@ -278,6 +287,10 @@ public class Day13_1 {
             return false;
         }
 
+        boolean hasCart() {
+            return this.cart != null;
+        }
+
         boolean isUnknown() {
             return type == RailNodeType.UNKNOWN;
         }
@@ -334,17 +347,6 @@ public class Day13_1 {
             }
         }
 
-        boolean isComplete() {
-            for (RailNode[] row : nodes) {
-                for (RailNode n : row) {
-                    if (n.isUnknown()) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
         void print() {
             for (RailNode[] row : nodes) {
                 for (RailNode n : row) {
@@ -354,7 +356,7 @@ public class Day13_1 {
             }
         }
 
-        void tick() {
+        void tick(CartCrashCallback callback) {
             List<RailNode> nodesToMove = new ArrayList<>();
             for (RailNode[] row : nodes) {
                 for (RailNode node : row) {
@@ -363,27 +365,38 @@ public class Day13_1 {
                     }
                 }
             }
-            nodesToMove.forEach(this::move);
+            nodesToMove.forEach(currentNode -> move(currentNode, callback));
         }
 
-        private void move(RailNode currentNode) {
+        private void move(RailNode currentNode, CartCrashCallback callback) {
             Cart cart = currentNode.cart;
+            if (cart == null) {
+                return;
+            }
             RailNode nextNode = get(currentNode.x, currentNode.y, cart.direction);
             if (nextNode.is(RailNodeType.EMPTY, RailNodeType.UNKNOWN)) {
                 throw new IllegalStateException("Wrong next node");
             }
             if (nextNode.cart != null) {
                 // cart is already in the next node, this is what we are looking for
-                throw new CartCrashException(nextNode);
-            }
+                callback.onCrash(currentNode, nextNode, this);
+            } else {
+                if (!nextNode.is(RailNodeType.VERTICAL, RailNodeType.HORIZONTAL)) {
+                    // only horizontal and vertical movement does not change direction
+                    cart.direction = nextNode.determineDirectionChange(cart);
+                }
 
-            if (!nextNode.is(RailNodeType.VERTICAL, RailNodeType.HORIZONTAL)) {
-                // only horizontal and vertical movement does not change direction
-                cart.direction = nextNode.determineDirectionChange(cart);
+                currentNode.cart = null;
+                nextNode.cart = cart;
             }
+        }
 
-            currentNode.cart = null;
-            nextNode.cart = cart;
+        int cartCount() {
+            return Arrays.stream(nodes).flatMap(Arrays::stream).mapToInt(node -> node.hasCart()? 1 : 0).sum();
+        }
+
+        List<RailNode> getNodesWithCarts() {
+            return Arrays.stream(nodes).flatMap(Arrays::stream).filter(node -> node.cart != null).collect(Collectors.toList());
         }
     }
 
